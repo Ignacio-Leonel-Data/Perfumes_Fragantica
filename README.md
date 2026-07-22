@@ -1,5 +1,6 @@
 # Dashboard Fragantica_Perfumes (2020–2024)
 
+<img width="1508" height="850" alt="fd" src="https://github.com/user-attachments/assets/4efb278a-7e97-46f9-a5af-d91cfeffdf25" />
 
 
 Para este proyecto se seleccionó el sector de perfumería y fragancias. El objetivo del análisis es comprender el comportamiento del mercado a partir de un conjunto de datos que contiene información sobre perfumes, marcas, calificaciones, interés de compra y características olfativas.
