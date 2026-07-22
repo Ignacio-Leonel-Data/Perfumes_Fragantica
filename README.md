@@ -31,5 +31,5 @@ Este tablero debería ser consultado por un gerente comercial o responsable de m
 
 ## 📄 Documentación Técnica
 
-- [Documentacion Tecnica Dashboard Perfumes Fragrantica](Docs/Documentacion_Tecnica.pdf)
+- [Documentacion Tecnica Dashboard Perfumes Fragrantica](Documentacion_Tecnica.pdf)
 - [Medidas DAX utilizadas](Docs/MEDIDAS_DAX.md)
