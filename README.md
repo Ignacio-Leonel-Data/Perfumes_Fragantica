@@ -31,5 +31,5 @@ Este tablero debería ser consultado por un gerente comercial o responsable de m
 
 ## 📄 Documentación Técnica
 
-- Docs/Documentacion_Tecnica.pdf
-- [Medidas DAX utilizadas](Docs/MEDIDAS_DAX.md)
+- 📄 [Ver Documentación Técnica (PDF)](Docs/Documentacion_Tecnica.pdf)
+- 📊 [Ver Medidas DAX utilizadas](Docs/MEDIDAS_DAX.md)
