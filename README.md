@@ -22,3 +22,9 @@ Incluye:
 - Forescast y Linea de Tendencia
 
 Más detalles en: [Medidas DAX utilizadas](Docs/MEDIDAS_DAX.md)
+
+## 🤝 Diseño de un Sistema de Soporte a Decisiones (DSS)
+
+
+El dashboard interactivo complementado con los análisis estadísticos y las proyecciones puede considerarse un Sistema de Soporte a Decisiones (DSS), ya que permite transformar los datos del mercado de perfumes en información útil para la toma de decisiones diarias.
+Este tablero debería ser consultado por un gerente comercial o responsable de marketing, quien podría utilizar los indicadores y visualizaciones para identificar rápidamente las marcas con mayor interés de compra, analizar la evolución del catálogo de perfumes y detectar segmentos de mercado con mayor potencial.
