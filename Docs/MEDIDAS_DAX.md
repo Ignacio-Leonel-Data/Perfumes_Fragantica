@@ -1,74 +1,51 @@
-📊 Medidas DAX – Tablero Power BI Fragantica Perfumes (1900 - 2026)
-Este documento reúne las principales medidas DAX utilizadas en el dashboard desarrollado en Power BI, organizadas según la estructura del proyecto.
+📊 Medidas DAX – Dashboard Power BI | Análisis de Perfumes
 
-# 📁 Panorama General
-⭐ Calificación promedio
+Este documento reúne las principales medidas DAX utilizadas durante el desarrollo del dashboard en Power BI, organizadas según la funcionalidad de cada indicador dentro del proyecto.
+
+📁 KPIs Principales
+🔹 Calificación Promedio
 Calificación Promedio =
 AVERAGE('perfumes_limpio'[rating_avg])
-
-Descripción
-
-Calcula la calificación promedio otorgada por los usuarios a todos los perfumes del catálogo.
-
-❤️ Interés Total
+🔹 Interés Total
 Interes Total =
 SUM('perfumes_limpio'[want])
-
-Descripción
-
-Calcula el interés total de compra sumando la cantidad de usuarios que marcaron cada perfume como "Want".
-
-🗳️ Media de votos por perfume
+🔹 Media de Votos por Perfume
 Media_Votos_Perfume =
 DIVIDE(
     SUM('perfumes_limpio'[vote_count]),
     COUNT('perfumes_limpio'[id]),
     0
 )
-
-Descripción
-
-Obtiene el promedio de votos recibidos por perfume.
-
-Se utilizó para comparar la media con la mediana durante el análisis estadístico.
-
-📈 Mediana de votos
+🔹 Mediana de Votos por Perfume
 Mediana_Votos_Perfume =
 MEDIAN('perfumes_limpio'[vote_count])
-
-Descripción
-
-Calcula la mediana de votos recibidos por perfume.
-
-Este indicador permitió comprobar que la distribución de votos es asimétrica debido a la presencia de valores atípicos.
-
-📅 Año Máximo
+🔹 Año Máximo
 Año Máximo =
 MAX('perfumes_limpio'[year])
+📁 Análisis Estadístico
+🔹 Comparación Media vs Mediana
 
-Descripción
+Las medidas Media_Votos_Perfume y Mediana_Votos_Perfume fueron utilizadas para analizar la distribución de la variable vote_count.
 
-Se utilizó para verificar el año máximo presente dentro del dataset durante el proceso de validación del gráfico temporal.
+Su comparación permitió comprobar que la distribución de votos presenta una fuerte asimetría positiva debido a la existencia de perfumes con una cantidad de votos considerablemente superior al resto del catálogo.
 
-🐍 Limpieza de datos en Python
+📁 Visualización Temporal
+🔹 Evolución del Catálogo
 
-Antes de importar la información a Power BI se realizó una limpieza del dataset utilizando Python.
+La medida Año Máximo fue utilizada durante la validación del gráfico temporal para verificar los límites del eje cronológico y asegurar una representación correcta de la evolución histórica del catálogo.
 
-Las principales transformaciones fueron:
+🐍 Scripts de Python – Limpieza y Preparación de Datos
 
-Selección únicamente de las columnas necesarias para el proyecto.
-Verificación de registros duplicados.
-Identificación de valores nulos.
-Eliminación de espacios en blanco innecesarios.
-Reemplazo de valores faltantes en las columnas accords y perfumers por el valor "Desconocido".
-Conversión de tipos de datos.
-Exportación de un nuevo dataset limpio para Power BI.
-🧹 Scripts aplicados
-Importación de librerías
+Durante la etapa de preparación de datos se utilizó Python para limpiar y transformar el conjunto de datos antes de su importación a Power BI.
+
+📁 Importación de Librerías
+🔹 Librería Principal
 import pandas as pd
-Lectura del archivo
+📁 Carga del Dataset
+🔹 Lectura del archivo CSV
 df = pd.read_csv("perfumes.csv")
-Selección de columnas
+📁 Selección de Variables
+🔹 Columnas utilizadas
 columnas = [
     "id",
     "name",
@@ -92,13 +69,15 @@ columnas = [
 ]
 
 df = df[columnas]
-Información general del dataset
+📁 Exploración Inicial
+🔹 Información General
 df.info()
-Registros duplicados
+🔹 Búsqueda de Registros Duplicados
 df.duplicated().sum()
-Valores nulos
+🔹 Identificación de Valores Nulos
 df.isnull().sum()
-Eliminación de espacios
+📁 Limpieza de Datos
+🔹 Eliminación de Espacios en Blanco
 columnas_texto = [
     "name",
     "brand",
@@ -109,35 +88,49 @@ columnas_texto = [
 
 for col in columnas_texto:
     df[col] = df[col].str.strip()
-Reemplazo de valores faltantes
+🔹 Reemplazo de Valores Faltantes
 df["accords"] = df["accords"].fillna("Desconocido")
 df["perfumers"] = df["perfumers"].fillna("Desconocido")
-Exportación del dataset limpio
+📁 Exportación
+🔹 Generación del Dataset Limpio
 df.to_csv(
     "perfumes_limpio.csv",
     index=False,
     encoding="utf-8-sig"
 )
-📊 Análisis estadístico en Python
-
-Para la segunda etapa del proyecto se utilizó Python para visualizar la distribución de los votos mediante un Box Plot, con el objetivo de identificar valores atípicos (Outliers).
-
+📁 Análisis Estadístico
+🔹 Box Plot - Distribución de Votos
 import pandas as pd
 import matplotlib.pyplot as plt
 
 df = pd.read_csv("perfumes_limpio.csv")
 
 plt.figure(figsize=(12,2))
-plt.boxplot(df["vote_count"], vert=False)
+
+plt.boxplot(
+    df["vote_count"],
+    vert=False
+)
 
 plt.title("Distribución de votos por perfume")
 plt.xlabel("Cantidad de votos")
 
 plt.show()
+📁 Interpretación Estadística
+🔹 Valores Atípicos (Outliers)
 
-Este gráfico permitió observar una distribución fuertemente asimétrica, donde un reducido grupo de perfumes concentra una cantidad muy elevada de votos respecto al resto del catálogo.
+El Box Plot permitió identificar una distribución fuertemente asimétrica de la variable vote_count.
 
-🛠 Herramientas utilizadas
+La mayor parte de los perfumes concentra una baja cantidad de votos, mientras que un reducido grupo presenta valores excepcionalmente altos, considerados outliers. Estos registros corresponden a fragancias con una elevada popularidad dentro de la comunidad de usuarios y constituyen información relevante para el análisis de negocio.
+
+📁 Decisiones de Modelado
+🔹 Filtrado de Años
+
+Durante la construcción del dashboard se detectaron registros con años inconsistentes (por ejemplo 20 y 2027) que afectaban la visualización del gráfico temporal.
+
+Para garantizar una representación cronológica correcta, se filtró el análisis considerando únicamente los registros comprendidos entre 1900 y 2026, sin modificar el resto del conjunto de datos.
+
+🛠 Tecnologías Utilizadas
 Python
 Pandas
 Power BI
