@@ -1,4 +1,4 @@
-# Dashboard Fragantica_Perfumes (2020–2024)
+# Dashboard Fragantica Perfumes (2020–2024)
 
 <img width="1508" height="850" alt="fd" src="https://github.com/user-attachments/assets/4efb278a-7e97-46f9-a5af-d91cfeffdf25" />
 
